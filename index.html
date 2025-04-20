@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Nennu!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffd6ec, #ffe4f7);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+      color: #d60087;
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation: pop 1s ease-in-out;
+    }
+
+    p {
+      color: #7a0066;
+      font-size: 1.2em;
+    }
+
+    .gift-box {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      background: #ff3399;
+      border-radius: 20px;
+      margin-top: 40px;
+      box-shadow: 0 0 25px #ff66cc;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .ribbon {
+      position: absolute;
+      background: #fff;
+      width: 30px;
+      height: 180px;
+      left: 75px;
+      top: 0;
+      border-radius: 5px;
+    }
+
+    .ribbon-horizontal {
+      position: absolute;
+      background: #fff;
+      width: 180px;
+      height: 30px;
+      top: 75px;
+      left: 0;
+      border-radius: 5px;
+    }
+
+    .message {
+      margin-top: 30px;
+      font-size: 1.5em;
+      color: #b3005f;
+      display: none;
+      text-align: center;
+      animation: fadeIn 1s forwards;
+    }
+
+    .gift-box.opened {
+      background: #ffe6f0;
+      animation: pop 0.5s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Confetti effect */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f39, #fc0, #6cf, #9f6;
+      animation: fall 3s linear infinite;
+      top: -10px;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Birthday Nennu!</h1>
+  <p>Click the gift to reveal your surprise!</p>
+
+  <div class="gift-box" onclick="openGift(this)">
+    <div class="ribbon"></div>
+    <div class="ribbon-horizontal"></div>
+  </div>
+
+  <div class="message" id="birthdayMessage">
+    Dear Nennu, you light up every room you walk into!<br>
+    May your birthday be full of love, joy, and magical moments.<br>
+    You're truly special!
+  </div>
+
+  <script>
+    function openGift(gift) {
+      gift.classList.add("opened");
+      document.getElementById("birthdayMessage").style.display = "block";
+      for (let i = 0; i < 60; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = ["#ff66cc", "#ffcc00", "#66ccff", "#99ff66"][Math.floor(Math.random() * 4)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+
+</body>
+</html>
